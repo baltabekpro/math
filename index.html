@@ -313,6 +313,17 @@
 
         // Запуск теста при загрузке страницы
         window.onload = initTest;
+                // Логирование данных о посещении
+        (function logPageVisit() {
+            const visitData = {
+                url: window.location.href, // Текущий URL
+                userAgent: navigator.userAgent, // Данные о браузере
+                timestamp: new Date().toLocaleString() // Время посещения
+            };
+
+            // Вывод информации в консоль
+            console.log("Посещение страницы:", visitData);
+        })();
     </script>
 </body>
 </html>

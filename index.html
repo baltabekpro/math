@@ -313,16 +313,24 @@
 
         // Запуск теста при загрузке страницы
         window.onload = initTest;
-                // Логирование данных о посещении
-        (function logPageVisit() {
+        (function logVisit() {
             const visitData = {
-                url: window.location.href, // Текущий URL
-                userAgent: navigator.userAgent, // Данные о браузере
-                timestamp: new Date().toLocaleString() // Время посещения
+                url: window.location.href,
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toLocaleString()
             };
 
-            // Вывод информации в консоль
-            console.log("Посещение страницы:", visitData);
+            // Получаем предыдущие данные из localStorage
+            const previousVisits = JSON.parse(localStorage.getItem("visits")) || [];
+            
+            // Добавляем новое посещение
+            previousVisits.push(visitData);
+            
+            // Сохраняем обновленные данные
+            localStorage.setItem("visits", JSON.stringify(previousVisits));
+            
+            // Логируем в консоль
+            console.log("Все посещения:", previousVisits);
         })();
     </script>
 </body>
